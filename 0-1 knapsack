@@ -1,0 +1,21 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    int n,atm;
+    cin>>n>>atm;
+    int weight[n],profit[n];
+    for(int ind=0;ind<n;ind++){
+        cin>>weight[ind];
+    }
+    for(int ind=0;ind<n;ind++){
+        cin>>profit[ind];
+    }
+    int sum=0;
+    for(int i=0;i<n;i++){
+        if(atm>=weight[i]){
+            sum+=profit[i];
+            atm-=weight[i];
+        }
+    }
+    cout<<sum;
+}
