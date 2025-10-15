@@ -1,0 +1,42 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+bool sharif(vector<int>&arr,int n,int target,vector<int>&com){
+    
+    int totalsub=1<<n;
+    for(int i=1;i<totalsub;i++){
+        int sum=0;
+        vector<int>temp;
+        for(int j=0;j<n;j++){
+            if(i & (1<<j)){
+                sum+=arr[j];
+                temp.push_back(arr[j]);
+            }
+        }
+        if(sum==target){
+            com=temp;
+            return true;
+        }
+    }
+    return false;
+    
+}
+int main(){
+    int n;
+    cin>>n;
+    vector<int>arr(n);
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    int target;
+    cin>>target;
+    cout<<(target+10)*3<<endl;
+    vector<int>com;
+    if(sharif(arr,n,target,com)){
+         for(int i=0;i<com.size();i++){
+            cout<<com[i]<<endl;
+        }
+    }else{
+    cout<<"no comination";
+    }
+}
