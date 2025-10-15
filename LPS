@@ -1,0 +1,21 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    string s1,rev;
+    cin>>s1;
+    rev=s1;
+    reverse(rev.begin(),rev.end());
+    int len1=s1.length();
+    int len2=rev.length();
+    vector<vector<int>>dp(len1+1,vector<int>(len2+1,0));
+    for(int i=1;i<=len1;i++){
+        for(int j=1;j<=len2;j++){
+            if(s1[i-1]==rev[j-1]){
+                dp[i][j]=1+dp[i-1][j-1];
+            }else{
+                dp[i][j]=max(dp[i-1][j],dp[i][j-1]);
+            }
+        }
+    }
+    cout<<dp[len1][len2];
+}
