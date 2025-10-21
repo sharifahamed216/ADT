@@ -1,0 +1,44 @@
+#include<bits/stdc++.h>
+using namespace std;
+int  main(){
+    int N,Q;
+    cin>>N>>Q;
+    vector<int>arr(N);
+    for(int i=0;i<N;i++){
+        cin>>arr[i];
+    }
+    for(int q=0;q<Q;q++){
+        char type;
+        cin>>type;
+        
+        if(type=='Q'){
+            int l,r;
+            cin>>l>>r;
+            int max=arr[l];
+            for(int  i=l+1;i<=r;i++){
+                if(max<arr[i]){
+                    max=arr[i];
+            }
+        }
+        cout<<max<<endl;
+        
+        }
+        else if(type=='U'){
+            int ind,v;
+            cin>>ind>>v;
+            arr[ind]=v;
+        }
+    }
+}
+
+
+
+output:
+
+6 5
+4 7 2 9 5 1
+Q 1 4
+U 3 6
+Q 1 4
+U 0 10
+Q 0 2
