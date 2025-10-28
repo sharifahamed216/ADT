@@ -1,0 +1,67 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+bool check(int r,int c,int n,vector<vector<int>>&matrix,vector<vector<bool>>&visited){
+    if(r>=0 && r<n && c>=0 && c<n && matrix[r][c]==1 && !visited[r][c]){
+        return true;
+    }
+    return false;
+}
+
+
+void fun(int r,int c,int n,vector<vector<int>>&matrix,vector<vector<bool>>&visited,string s,vector<string>&ans){
+    if(r==n-1 && c==n-1){
+        ans.push_back(s);
+        return;
+    }
+    visited[r][c]=true;
+    if(check(r+1,c,n,matrix,visited)){
+        fun(r+1,c,n,matrix,visited,s+"D",ans);
+    }
+    if(check(r-1,c,n,matrix,visited)){
+        fun(r-1,c,n,matrix,visited,s+"U",ans);
+    }
+    if(check(r,c+1,n,matrix,visited)){
+        fun(r,c+1,n,matrix,visited,s+"R",ans);
+    }
+    if(check(r,c-1,n,matrix,visited)){
+        fun(r,c-1,n,matrix,visited,s+"L",ans);
+    }
+    visited[r][c]=false;
+}
+
+int main(){
+    int n;
+    cin>>n;
+    vector<vector<int>> matrix(n,vector<int>(n));
+    vector<vector<bool>> visited(n,vector<bool>(n,false));
+    vector<string>ans;
+    for(int i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            cin>>matrix[i][j];
+        }
+    }
+    if(matrix[0][0]==1){
+        fun(0,0,n,matrix,visited, "",ans);
+    }
+    if(ans.empty()){
+        cout<<-1;
+    }
+    else{
+        for(string s : ans){
+            cout<<s<<" ";
+        }
+    }
+}
+
+
+input:
+
+4
+1 0 0 0
+1 1 0 1
+1 1 0 0
+0 1 1 1
+
+output:
+DDRDRR DRDDRR 
