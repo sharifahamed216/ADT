@@ -1,0 +1,25 @@
+#include<iostream>
+using namespace std;
+int c;
+
+void toh(int plate,char s,char d,char a){
+    if(plate==1){
+        cout<<"plate 1 moves from "<<s<<" to "<<d<<endl;
+        c++;
+        return;
+    }
+    toh(plate-1,s,a,d);
+    cout<<"plate "<<plate<<" moves from " <<s<<" to "<<d<<endl;
+    c++;
+    toh(plate-1,a,d,s);
+}
+int main(){
+    int plate;
+    
+    cin>>plate;
+    toh(plate,'S','D','A');
+    cout<<c;
+}
+
+input:
+3
